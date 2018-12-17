@@ -7,7 +7,8 @@ const concatCss = require('gulp-concat-css');
 const browserSync = require('browser-sync').create();
 const imgmin = require('gulp-imagemin');
 // const sass = require('gulp-sass');
-
+const print = require('gulp-print').default;
+var order = require("gulp-order");
 
 var path = 'app';
 var docs = 'docs';
@@ -67,9 +68,32 @@ gulp.task('minifyImages', () => {
 });
 
 gulp.task('processJS', function() {
+    // gulp.src([
+    //     // "app/js/lib/jquery.min.js",
+    //     "app/js/lib/jquery-dateFormat.min.js",
+    //     "app/js/lib/jquery.loadTemplate.min.js",
+    //     "app/js/lib/popper.min.js",
+    //     "app/js/lib/fontawesome-all.min.js",
+    //     "app/js/script.js",
+    //     // "app\**\*.js"
+    // ])
     gulp.src(path + '/js/**/*.js')
-    .pipe(uglify())
-    .pipe(concat('script.js'))
+    .pipe(print(filepath => `built: ${filepath}`))
+    .pipe(order([
+        "lib/jquery.min.js",
+        // "lib/jquery-dateFormat.min.js",
+        // "lib/jquery.loadTemplate.min.js",
+        // "lib/popper.min.js",
+        // "lib/fontawesome-all.min.js",
+        // "script.js",
+        // "app/**/*.js"
+      ]))
+    .pipe(concat('script.js').on('error', function(e){
+        console.log(e)
+    }))
+    .pipe(uglify().on('error', function(e){
+        console.log(e)
+    }))
     .pipe(gulp.dest((docs + '/js')))
 });
 
