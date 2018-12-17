@@ -5,7 +5,7 @@ const concat = require('gulp-concat');
 const runSequence = require('run-sequence');
 const concatCss = require('gulp-concat-css');
 const browserSync = require('browser-sync').create();
-// const imgmin = require('gulp-imagemin');
+const imgmin = require('gulp-imagemin');
 // const sass = require('gulp-sass');
 
 
@@ -48,6 +48,7 @@ gulp.task('default', ['watch', 'html', 'js', 'css', 'webserver']);
 
 gulp.task('copyAllHTML', function() {
     gulp.src(path + '/**/*.html')
+    gulp.src('favicon.jpg')
         .pipe(gulp.dest(dist));
 });
 
@@ -79,6 +80,6 @@ gulp.task('processCss', function() {
 });
 
 gulp.task('build', function(callback) {
-    runSequence(['copyAllHTML', 'processJS', 'processCss'], callback);
+    runSequence(['copyAllHTML', 'processJS', 'minifyImages', 'processCss'], callback);
     // runSequence('sass2CSS', ['copyAllHTML', 'minifyImages', 'processJS', 'processCss'], callback);
 });
