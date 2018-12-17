@@ -32,7 +32,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('webserver', function() {
-    gulp.src(path + '/')
+    gulp.src(docs + '/')
         .pipe(webserver({
             port: 3000,
             livereload: true,
@@ -48,24 +48,24 @@ gulp.task('default', ['watch', 'html', 'js', 'css', 'webserver']);
 
 gulp.task('copyAllHTML', function() {
     gulp.src(path + '/**/*.html')
-        .pipe(gulp.dest(dist));
+        .pipe(gulp.dest(docs));
 });
 gulp.task('copyFavIcon', function() {
     gulp.src('favicon.jpg')
-        .pipe(gulp.dest(dist));
+        .pipe(gulp.dest(docs));
 });
 
 gulp.task('minifyImages', () => {
     gulp.src(path + '/imgs/**/*')
     .pipe(imgmin())
-    .pipe(gulp.dest(dist + '/imgs'));
+    .pipe(gulp.dest(docs + '/imgs'));
 });
 
 gulp.task('processJS', function() {
     gulp.src(path + '/js/**/*.js')
     .pipe(uglify())
     .pipe(concat('script.js'))
-    .pipe(gulp.dest((dist + '/js')))
+    .pipe(gulp.dest((docs + '/js')))
 });
 
 gulp.task('sass2CSS', function() {
@@ -78,7 +78,7 @@ gulp.task('sass2CSS', function() {
 gulp.task('processCss', function() {
     return gulp.src(path + '/css/**/*.css')
                 .pipe(concatCss('style.css'))
-                .pipe(gulp.dest(dist + '/css'))
+                .pipe(gulp.dest(docs + '/css'))
                 .pipe(browserSync.stream())
 });
 
