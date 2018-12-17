@@ -55,6 +55,11 @@ gulp.task('copyFavIcon', function() {
         .pipe(gulp.dest(docs));
 });
 
+gulp.task('copyJsonData', function() {
+    gulp.src(path + '/**/*.json')
+        .pipe(gulp.dest(docs));
+});
+
 gulp.task('minifyImages', () => {
     gulp.src(path + '/imgs/**/*')
     .pipe(imgmin())
@@ -83,6 +88,6 @@ gulp.task('processCss', function() {
 });
 
 gulp.task('build', function(callback) {
-    runSequence(['copyAllHTML','copyFavIcon', 'processJS', 'minifyImages', 'processCss'], callback);
+    runSequence(['copyAllHTML', 'copyJsonData', 'copyFavIcon', 'processJS', 'minifyImages', 'processCss'], callback);
     // runSequence('sass2CSS', ['copyAllHTML', 'minifyImages', 'processJS', 'processCss'], callback);
 });
