@@ -1,0 +1,65 @@
+[
+  {
+    "id": "0",
+    "todoTitle": "clean the room",
+    "todoOwner": "Dani",
+    "todoNote": "clean the room...",
+    "todoDate": "11/19/18 13:30"
+  },
+  {
+    "id": "1",
+    "todoTitle": "Ela",
+    "todoOwner": "buy milk",
+    "todoNote": "buy milk and eggs from the grocery",
+    "todoDate": "11/18/18 10:15"
+  },
+  {
+    "id": "2",
+    "todoTitle": "help Ela with the exam",
+    "todoOwner": "Dani",
+    "todoNote": "help Ela to study for the math test",
+    "todoDate": "11/21/18 14:45"
+  },
+  {
+    "id": "3",
+    "todoTitle": "do homework",
+    "todoOwner": "Yosi",
+    "todoNote": "do homework...",
+    "todoDate": "11/17/18 16:00"
+  },
+  {
+    "id": "4",
+    "todoTitle": "do homework",
+    "todoOwner": "Yosi",
+    "todoNote": "do homework...",
+    "todoDate": "11/20/18 9:00"
+  },
+  {
+    "id": "5",
+    "todoTitle": "visit grandpha",
+    "todoOwner": "Yosi",
+    "todoNote": "some tex here...",
+    "todoDate": "11/15/18 13:15"
+  },
+  {
+    "id": "6",
+    "todoTitle": "visit grandpha",
+    "todoOwner": "Dani",
+    "todoNote": "some tex here...",
+    "todoDate": "11/25/18 13:30"
+  },
+  {
+    "id": "7",
+    "todoTitle": "do homework",
+    "todoOwner": "Ela",
+    "todoNote": "some tex here...",
+    "todoDate": "11/23/18 13:30"
+  },
+  {
+    "id": "8",
+    "todoTitle": "visit grandpha",
+    "todoOwner": "Ela",
+    "todoNote": "some tex here...",
+    "todoDate": "11/12/18 13:30"
+  }
+ ]
