@@ -9,8 +9,11 @@
   "author": "Nisan Sabag",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
     "gulp-concat-css": "^3.1.0",
+    "gulp-uglify": "^3.0.1",
     "gulp-webserver": "^0.9.1",
     "run-sequence": "^2.2.1"
   }

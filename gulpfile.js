@@ -1,31 +1,36 @@
 const gulp = require('gulp');
 const webserver = require('gulp-webserver');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
 const runSequence = require('run-sequence');
 const concatCss = require('gulp-concat-css');
 const browserSync = require('browser-sync').create();
+// const imgmin = require('gulp-imagemin');
+// const sass = require('gulp-sass');
 
-var builds = 'app';
+
+var path = 'app';
 
 gulp.task('js', function() {
-  return gulp.src(builds + '/js/main.js')
+  return gulp.src(path + '/js/main.js')
 });
 
 gulp.task('html', function() {
-  gulp.src(builds + '/**/*.html');
+  gulp.src(path + '/**/*.html');
 });
 
 gulp.task('css', function() {
-    gulp.src(builds + '/css/*.css');
+    gulp.src(path + '/css/*.css');
 });
 
 gulp.task('watch', function() {
-    gulp.watch(builds + '/js/**/*', ['js']);
-    gulp.watch(builds + '/css/**/*.css', ['css']);
-    gulp.watch([builds + '/**/*.html'], ['html']);
+    gulp.watch(path + '/js/**/*', ['js']);
+    gulp.watch(path + '/css/**/*.css', ['css']);
+    gulp.watch([path + '/**/*.html'], ['html']);
 });
 
 gulp.task('webserver', function() {
-    gulp.src(builds + '/')
+    gulp.src(path + '/')
         .pipe(webserver({
             port: 3000,
             livereload: true,
@@ -53,10 +58,10 @@ gulp.task('minifyImages', () => {
 gulp.task('processJS', function() {
     gulp.src(path + '/js/**/*.js')
     .pipe(uglify())
-    .pipe(concat('application.js'))
+    .pipe(concat('script.js'))
     .pipe(gulp.dest(('dist/js')))
 });
-// .pipe(browserSync.stream()) - insurers browser always running the current css when 
+
 gulp.task('sass2CSS', function() {
     return gulp.src(path + '/sass/**/*.scss')
                 .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -66,7 +71,7 @@ gulp.task('sass2CSS', function() {
 
 gulp.task('processCss', function() {
     return gulp.src(path + '/css/**/*.css')
-                .pipe(concatCss('styles.css'))
+                .pipe(concatCss('style.css'))
                 .pipe(gulp.dest('dist/css'))
                 .pipe(browserSync.stream())
 });
