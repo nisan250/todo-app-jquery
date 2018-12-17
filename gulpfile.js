@@ -10,6 +10,8 @@ const browserSync = require('browser-sync').create();
 
 
 var path = 'app';
+var docs = 'docs';
+var dist = 'dist';
 
 gulp.task('js', function() {
   return gulp.src(path + '/js/main.js')
@@ -46,20 +48,20 @@ gulp.task('default', ['watch', 'html', 'js', 'css', 'webserver']);
 
 gulp.task('copyAllHTML', function() {
     gulp.src(path + '/**/*.html')
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task('minifyImages', () => {
     gulp.src(path + '/imgs/**/*')
     .pipe(imgmin())
-    .pipe(gulp.dest('dist/imgs'));
+    .pipe(gulp.dest(dist + '/imgs'));
 });
 
 gulp.task('processJS', function() {
     gulp.src(path + '/js/**/*.js')
     .pipe(uglify())
     .pipe(concat('script.js'))
-    .pipe(gulp.dest(('dist/js')))
+    .pipe(gulp.dest((dist + '/js')))
 });
 
 gulp.task('sass2CSS', function() {
@@ -72,7 +74,7 @@ gulp.task('sass2CSS', function() {
 gulp.task('processCss', function() {
     return gulp.src(path + '/css/**/*.css')
                 .pipe(concatCss('style.css'))
-                .pipe(gulp.dest('dist/css'))
+                .pipe(gulp.dest(dist + '/css'))
                 .pipe(browserSync.stream())
 });
 
