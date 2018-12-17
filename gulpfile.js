@@ -48,6 +48,9 @@ gulp.task('default', ['watch', 'html', 'js', 'css', 'webserver']);
 
 gulp.task('copyAllHTML', function() {
     gulp.src(path + '/**/*.html')
+        .pipe(gulp.dest(dist));
+});
+gulp.task('copyFavIcon', function() {
     gulp.src('favicon.jpg')
         .pipe(gulp.dest(dist));
 });
@@ -80,6 +83,6 @@ gulp.task('processCss', function() {
 });
 
 gulp.task('build', function(callback) {
-    runSequence(['copyAllHTML', 'processJS', 'minifyImages', 'processCss'], callback);
+    runSequence(['copyAllHTML','copyFavIcon', 'processJS', 'minifyImages', 'processCss'], callback);
     // runSequence('sass2CSS', ['copyAllHTML', 'minifyImages', 'processJS', 'processCss'], callback);
 });
