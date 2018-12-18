@@ -57,14 +57,14 @@ gulp.task('inject', ['copy'], function () {
     const css = gulp.src(paths.tmpCSS);
     const js = gulp.src(
         [
-            'lib/fontawesome-all.min.js',
-            'lib/jquery.min.js',
-            'lib//bootstrap.min.js',
-            'lib/jquery.loadTemplate.min.js',
-            'lib/jquery-dateFormat.min.js',
-            'lib/popper.min.js',
-            'lib/underscore-min.js',
-            'script.js',
+            paths.app + '/js/lib/fontawesome-all.min.js',
+            paths.app + '/js/lib/jquery.min.js',
+            paths.app + '/js/lib//bootstrap.min.js',
+            paths.app + '/js/lib/jquery.loadTemplate.min.js',
+            paths.app + '/js/lib/jquery-dateFormat.min.js',
+            paths.app + '/js/lib/popper.min.js',
+            paths.app + '/js/lib/underscore-min.js',
+            paths.app + '/js/script.js',
             // 'app/**/*.js'
         ]
     );
@@ -104,11 +104,24 @@ return gulp.src(paths.appCSS)
 });
 
 gulp.task('js:dist', function () {
-    return gulp.src(paths.appJS)
-        .pipe(concat('script.min.js'))
-        // .pipe(stripDebug())
-        .pipe(uglify())
-        .pipe(gulp.dest(paths.dist));
+    // return gulp.src(paths.appJS)
+    return gulp.src(
+        [
+            paths.tmp + '/js/lib/fontawesome-all.min.js',
+            paths.tmp + '/js/lib/jquery.min.js',
+            paths.tmp + '/js/lib//bootstrap.min.js',
+            paths.tmp + '/js/lib/jquery.loadTemplate.min.js',
+            paths.tmp + '/js/lib/jquery-dateFormat.min.js',
+            paths.tmp + '/js/lib/popper.min.js',
+            paths.tmp + '/js/lib/underscore-min.js',
+            paths.tmp + '/js/script.js',
+            // 'app/**/*.js'
+        ]
+    ).pipe(print())
+    .pipe(concat('script.min.js'))
+    // .pipe(stripDebug())
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('images:dist', () => {
@@ -123,8 +136,9 @@ gulp.task('favIcon:dist', function() {
 gulp.task('copy:dist', ['images:dist', 'html:dist', 'css:dist', 'js:dist', 'favIcon:dist' ]);
 
 gulp.task('inject:dist', ['copy:dist'], function () {
-    var css = gulp.src(paths.distCSS);
-    var js = gulp.src(paths.distJS);
+    const css = gulp.src(paths.distCSS);
+    const js = gulp.src(paths.distJS).pipe(print());
+
     return gulp.src(paths.distIndex)
         .pipe(inject( css, { relative:true } ))
         .pipe(inject( js, { relative:true } ))
