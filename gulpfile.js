@@ -66,10 +66,10 @@ gulp.task('inject', ['copy'], function () {
         [
             paths.app + '/js/lib/fontawesome-all.min.js',
             paths.app + '/js/lib/jquery.min.js',
-            paths.app + '/js/lib//bootstrap.min.js',
             paths.app + '/js/lib/jquery.loadTemplate.min.js',
             paths.app + '/js/lib/jquery-dateFormat.min.js',
             paths.app + '/js/lib/popper.min.js',
+            paths.app + '/js/lib//bootstrap.min.js',
             paths.app + '/js/lib/underscore-min.js',
             paths.app + '/js/script.js',
             // 'app/**/*.js'
@@ -116,13 +116,12 @@ gulp.task('js:dist', function () {
         [
             paths.tmp + '/js/lib/fontawesome-all.min.js',
             paths.tmp + '/js/lib/jquery.min.js',
-            paths.tmp + '/js/lib//bootstrap.min.js',
             paths.tmp + '/js/lib/jquery.loadTemplate.min.js',
             paths.tmp + '/js/lib/jquery-dateFormat.min.js',
             paths.tmp + '/js/lib/popper.min.js',
+            paths.tmp + '/js/lib//bootstrap.min.js',
             paths.tmp + '/js/lib/underscore-min.js',
             paths.tmp + '/js/script.js',
-            // 'app/**/*.js'
         ]
     ).pipe(print())
     .pipe(concat('script.min.js'))
