@@ -13,7 +13,7 @@ const del = require('del');
 // const concatCss = require('gulp-concat-css');
 // const browserSync = require('browser-sync').create();
 
-// var order = require("gulp-order");
+// var order = require('gulp-order');
 
 const paths = {
   app: 'app/**/*',
@@ -41,7 +41,8 @@ gulp.task('css', function () {
     return gulp.src(paths.appCSS).pipe(gulp.dest(paths.tmp));
 });
 gulp.task('js', function () {
-    return gulp.src(paths.appJS).pipe(gulp.dest(paths.tmp));
+    return gulp.src(paths.appJS)
+    .pipe(gulp.dest(paths.tmp));
 });
 gulp.task('favIcon', function() {
     gulp.src('favicon.jpg').pipe(gulp.dest(paths.tmp));
@@ -54,7 +55,19 @@ gulp.task('copy', ['html', 'favIcon',  'css', 'js', 'images']);
 
 gulp.task('inject', ['copy'], function () {
     const css = gulp.src(paths.tmpCSS);
-    const js = gulp.src(paths.tmpJS);
+    const js = gulp.src(
+        [
+            'lib/fontawesome-all.min.js',
+            'lib/jquery.min.js',
+            'lib//bootstrap.min.js',
+            'lib/jquery.loadTemplate.min.js',
+            'lib/jquery-dateFormat.min.js',
+            'lib/popper.min.js',
+            'lib/underscore-min.js',
+            'script.js',
+            // 'app/**/*.js'
+        ]
+    );
     return gulp.src(paths.tmpIndex)
       .pipe(inject( css, { relative:true } ))
       .pipe(inject( js, { relative:true } ))
@@ -93,6 +106,7 @@ return gulp.src(paths.appCSS)
 gulp.task('js:dist', function () {
     return gulp.src(paths.appJS)
         .pipe(concat('script.min.js'))
+        // .pipe(stripDebug())
         .pipe(uglify())
         .pipe(gulp.dest(paths.dist));
 });

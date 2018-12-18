@@ -21,8 +21,10 @@
     "gulp-order": "^1.2.0",
     "gulp-print": "^5.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-strip-debug": "^3.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-webserver": "^0.9.1",
     "run-sequence": "^2.2.1"
-  }
+  },
+  "dependencies": {}
 }
