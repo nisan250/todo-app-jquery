@@ -8,8 +8,8 @@
   },
   {
     "id": "1",
-    "todoTitle": "Ela",
-    "todoOwner": "buy milk",
+    "todoTitle": "buy milk",
+    "todoOwner": "Ela",
     "todoNote": "buy milk and eggs from the grocery",
     "todoDate": "11/18/18 10:15"
   },
@@ -22,7 +22,7 @@
   },
   {
     "id": "3",
-    "todoTitle": "do homework",
+    "todoTitle": "visit grandpha",
     "todoOwner": "Yosi",
     "todoNote": "do homework...",
     "todoDate": "11/17/18 16:00"
@@ -36,7 +36,7 @@
   },
   {
     "id": "5",
-    "todoTitle": "visit grandpha",
+    "todoTitle": "do homework",
     "todoOwner": "Yosi",
     "todoNote": "some tex here...",
     "todoDate": "11/15/18 13:15"

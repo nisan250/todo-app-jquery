@@ -1,3 +1,21 @@
 .add-todo-item .card-body {
     display: none;
 }
+
+.todo-name {
+    line-height: 0.8;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #2C3E50;
+    margin-bottom: 8px;
+}
+
+.todo-date {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.todo-addheading {
+    cursor: pointer;
+}
