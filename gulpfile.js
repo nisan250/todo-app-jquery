@@ -20,17 +20,20 @@ const paths = {
   appHTML: 'app/**/*.html',
   appCSS: 'app/**/*.css',
   appJS: 'app/**/*.js',
+  appJSON: 'app/**/*.json',
   appImgs: 'app/imgs/**/*',
   tmp: 'tmp',
   tmpIndex: 'tmp/index.html',
   tmpCSS: 'tmp/**/*.css',
   tmpJS: 'tmp/**/*.js',
+  tmpJSON: 'tmp/**/*.json',
   tmpImgs: 'tmp/imgs/**/*',
   dist: 'dist',
   distIndex: 'dist/index.html',
   distCSS: 'dist/**/*.css',
   distJS: 'dist/**/*.js',
   distImgs: 'dist/imgs/**/*',
+  distJSON: 'dist/**/*.json',
 };
 
 /*  --- TEMP - WORK ENV ---   */
@@ -44,6 +47,10 @@ gulp.task('js', function () {
     return gulp.src(paths.appJS)
     .pipe(gulp.dest(paths.tmp));
 });
+gulp.task('json', function () {
+    return gulp.src(paths.appJSON)
+    .pipe(gulp.dest(paths.tmp));
+});
 gulp.task('favIcon', function() {
     gulp.src('favicon.jpg').pipe(gulp.dest(paths.tmp));
     
@@ -51,7 +58,7 @@ gulp.task('favIcon', function() {
 gulp.task('images', () => {
     gulp.src(paths.appImgs).pipe(imgmin()).pipe(gulp.dest('tmp/imgs'));
 });
-gulp.task('copy', ['html', 'favIcon',  'css', 'js', 'images']);
+gulp.task('copy', ['html', 'favIcon',  'css', 'js', 'json', 'images']);
 
 gulp.task('inject', ['copy'], function () {
     const css = gulp.src(paths.tmpCSS);
@@ -124,6 +131,11 @@ gulp.task('js:dist', function () {
     .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('json:dist', function () {
+    return gulp.src(paths.tmpJSON)
+    .pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('images:dist', () => {
     gulp.src(paths.tmpImgs).pipe(imgmin()).pipe(gulp.dest('dist/imgs'));
 });
@@ -133,7 +145,7 @@ gulp.task('favIcon:dist', function() {
     
 });
 
-gulp.task('copy:dist', ['images:dist', 'html:dist', 'css:dist', 'js:dist', 'favIcon:dist' ]);
+gulp.task('copy:dist', ['images:dist', 'html:dist', 'css:dist', 'js:dist', 'favIcon:dist', 'json:dist' ]);
 
 gulp.task('inject:dist', ['copy:dist'], function () {
     const css = gulp.src(paths.distCSS);

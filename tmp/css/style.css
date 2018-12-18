@@ -1,6 +1,3 @@
-body {
-    background: transparent;
-}
-footer {
-    background: transparent;
+.add-todo-item .card-body {
+    display: none;
 }
