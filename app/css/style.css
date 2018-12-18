@@ -19,3 +19,7 @@
 .todo-addheading {
     cursor: pointer;
 }
+.info{
+    text-align: center;
+    font-weight: bold;
+}

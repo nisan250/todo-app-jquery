@@ -24,6 +24,9 @@ $(function(){
       info = _.sortBy(info, sortBy).reverse();
     }
 
+    $.addTemplateFormatter('formatDate', function(value) {
+      return $.format.date(new Date(value), 'MM/dd hh:mm p');
+    })
 
     $('#todoList').loadTemplate('todo-list.html', info, {
       complete: function() {
@@ -35,6 +38,18 @@ $(function(){
             $(this).remove();
           });
         }); // delete
+
+        $('[contenteditable]').on('blur', function() {
+            var fieldData, fieldName, whichID;
+            whichID = Number($(this).parents('.todo-item').attr('id'));
+            console.log(whichID);
+            fieldName = $(this).data('field');
+            console.log(fieldName);
+            fieldData = $(this).text();
+            console.log(fieldData);
+            todoData[whichID][fieldName] = fieldData;
+        }); // edit
+
       }
     });// load template
   }
@@ -103,6 +118,23 @@ $(function(){
     });
     console.log('todoData', todoData);
     listTodo(displayData);
+  });
+
+  $('#todoForm').submit(function(e) {
+    e.preventDefault();
+    newItem = {};
+
+    newItem.todoTitle = $('#todoTitle').val();
+    newItem.todoOwner = $('#todoOwner').val();
+    newItem.todoDate = $('#todoDate').val();
+    newItem.todoNote = $('#todoDescription').val();
+
+    todoData.push(newItem);
+    listTodo(displayData);
+    $('#todoForm')[0].reset();
+    $('.card-body').hide(300);
+    
+
   });
 }); // document ready
 
