@@ -1,2 +1,2 @@
 ﻿# todo-app-jquery
-on progree...
+TODO List with jQuery & jQuery templates
