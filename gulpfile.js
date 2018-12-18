@@ -7,6 +7,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const imgmin = require('gulp-imagemin');
 const print = require('gulp-print').default;
+const del = require('del');
 // // const sass = require('gulp-sass');
 // const runSequence = require('run-sequence');
 // const concatCss = require('gulp-concat-css');
@@ -48,7 +49,6 @@ gulp.task('favIcon', function() {
 });
 gulp.task('images', () => {
     gulp.src(paths.appImgs).pipe(imgmin()).pipe(gulp.dest('tmp/imgs'));
-    // gulp.src(paths.appImgs).pipe(print()).pipe(gulp.dest(paths.tmpImgs));
 });
 gulp.task('copy', ['html', 'favIcon',  'css', 'js', 'images']);
 
@@ -99,7 +99,6 @@ gulp.task('js:dist', function () {
 
 gulp.task('images:dist', () => {
     gulp.src(paths.tmpImgs).pipe(imgmin()).pipe(gulp.dest('dist/imgs'));
-    // gulp.src(paths.tmpImgs).pipe(imgmin()).pipe(gulp.dest(paths.distImgs));
 });
 
 gulp.task('favIcon:dist', function() {
@@ -131,3 +130,10 @@ gulp.task('serve-dist', ['inject'], function () {
         livereload: true
         }));
 });
+gulp.task('clean', function () {
+    del([paths.tmp, paths.dist]);
+});
+gulp.task('docs', function () {
+    return gulp.src('dist/**/*').pipe(gulp.dest('docs'));
+});
+
